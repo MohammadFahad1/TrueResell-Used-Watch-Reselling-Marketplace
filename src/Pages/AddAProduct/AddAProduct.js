@@ -47,7 +47,9 @@ const AddAProduct = () => {
                         sellerEmail: newProduct.sellerEmail,
                         sellerName: newProduct.sellerName,
                         sellerPhoto: newProduct.sellerPhoto,
-                        uid: newProduct.uid
+                        uid: newProduct.uid,
+                        timestamp: new Date().getTime(),
+                        date: new Date()
                     }
 
                     // Save product into database
@@ -61,7 +63,7 @@ const AddAProduct = () => {
                         .then(data => {
                             if (data.acknowledged) {
                                 toast.success('Product Added Successfuly!');
-                                navigate('/')
+                                navigate('/products')
                             } else {
                                 toast.error('Sorry, Something went wrong while adding the product!')
                             }

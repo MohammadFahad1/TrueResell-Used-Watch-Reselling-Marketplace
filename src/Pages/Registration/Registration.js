@@ -82,7 +82,6 @@ const Registration = () => {
         const photoURL = form.photourl.value;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(name, email, photoURL, password);
 
         const from = location?.state?.from?.pathname || '/';
 

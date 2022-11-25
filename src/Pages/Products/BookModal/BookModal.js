@@ -1,8 +1,39 @@
 import React, { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookModal = ({ product }) => {
     const { user } = useContext(AuthContext);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const bookProduct = info => {
+        const key = Object.keys(info);
+        const data = {
+            ...product,
+            phoneNumber: info[key[0]],
+            meetingLocation: info[key[1]],
+            bookingTime: new Date().getTime(),
+            bookedById: user.uid,
+            bookedByName: user.displayName,
+            bookedByEmail: user?.email,
+            bookedByPhoto: user?.photoURL
+        }
+        // console.log(data);
+        fetch('http://localhost:5000/book-product', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(dt => {
+                toast('Product Booked Successfully!');
+                navigate('/')
+            })
+    }
     return (
         <>
             <input type="checkbox" id={product._id} className="modal-toggle" />
@@ -11,7 +42,7 @@ const BookModal = ({ product }) => {
                     <label htmlFor={product._id} className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 className="text-lg font-bold mb-4">{product.productName}</h3>
 
-                    <form>
+                    <form onSubmit={handleSubmit(bookProduct)}>
                         <div className="relative z-0 mb-6 w-full group">
                             <input type="text" name={`buyername-${product._id}`} id={`buyername-${product._id}`} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" defaultValue={user?.displayName} readOnly required />
                             <label htmlFor={`buyername-${product._id}`} className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">User Name</label>
@@ -32,11 +63,11 @@ const BookModal = ({ product }) => {
                         </div>
                         <div className="grid md:grid-cols-2 md:gap-6">
                             <div className="relative z-0 mb-6 w-full group">
-                                <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{5}" name={`phone-${product._id}`} id={`phone-${product._id}`} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input {...register(`phoneNumber_${product._id}`, { required: true })} type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{5}" id={`phone-${product._id}`} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                 <label htmlFor={`phone-${product._id}`} className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone number (01*********)</label>
                             </div>
                             <div className="relative z-0 mb-6 w-full group">
-                                <input type="text" name={`meeting-location-${product._id}`} id={`meeting-location-${product._id}`} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                <input {...register(`meetingLocation_${product._id}`, { required: true })} type="text" id={`meeting-location-${product._id}`} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                                 <label htmlFor={`meeting-location-${product._id}`} className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Meeting Location</label>
                             </div>
                         </div>

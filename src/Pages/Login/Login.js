@@ -83,6 +83,19 @@ const Login = () => {
                 toast.success('Successfully Logged In!');
                 const user = result.user;
 
+                const newUser = { uid: user.uid, displayName: user.displayName, email: user?.email, photoURL: user.photoURL }
+                if (newUser) {
+                    fetch('http://localhost:5000/user', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify(newUser)
+                    })
+                        .then(res => res.json())
+                        .then(data => console.log(data))
+                }
+
                 const currentUser = {
                     email: user.email
                 }

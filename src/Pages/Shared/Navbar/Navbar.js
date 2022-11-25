@@ -36,7 +36,7 @@ const Navbar = () => {
                                     <img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="" />
                                 </button>
                                 <div className={`${profileMenu ? '' : 'hidden'} z-50 my-4 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 dropdown-menu-style absolute top-0 left-0`} style={{
-                                    transform: 'translate(-134px, 46px)'
+                                    transform: 'translate(-80px, 46px)'
                                 }} id="user-dropdown" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom">
                                     <div className="py-3 px-4">
                                         <span className="block text-sm text-gray-900 dark:text-white">{user?.displayName}</span>

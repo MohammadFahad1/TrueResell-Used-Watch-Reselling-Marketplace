@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
-import toast, { Toaster } from 'react-hot-toast';
-import { json, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const AddAProduct = () => {
@@ -10,7 +10,7 @@ const AddAProduct = () => {
     const { user } = useContext(AuthContext);
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('http://localhost:5000/products')
+        queryFn: () => fetch('http://localhost:5000/categories')
             .then(res => res.json())
     })
 
@@ -57,8 +57,7 @@ const AddAProduct = () => {
                             'content-type': 'application/json'
                         },
                         body: JSON.stringify(newProd)
-                    }).
-                        then(res => res.json())
+                    }).then(res => res.json())
                         .then(data => {
                             if (data.acknowledged) {
                                 toast.success('Product Added Successfuly!');
@@ -74,7 +73,7 @@ const AddAProduct = () => {
 
     return (
         <div className='my-28 max-w-6xl mx-auto p-5'>
-            <h1 className='text-3xl font-bold'>Add a Product</h1>
+            <h1 className='text-4xl font-bold mb-7 text-center text-indigo-600 underline'>Add a Product</h1>
             <form onSubmit={handleSubmit(submitHandler)} className="w-full">
                 <div className="flex flex-wrap -mx-3 mb-6">
                     <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -124,7 +123,7 @@ const AddAProduct = () => {
                         </label>
                         <input {...register('description', {
                             required: "Description is required!"
-                        })} className="appearance-none block w-full text-gray-700  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text" placeholder="Description..." />
+                        })} className="appearance-none block w-full text-gray-700  rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="text" placeholder="Description..." />
                         {
                             errors.description ?
                                 <p className="text-red-500 text-xs italic">{errors.description.message}</p>
@@ -177,7 +176,7 @@ const AddAProduct = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                    <div className="w-full md:w-1/3 px-3 mb-4 md:mb-0">
                         <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-zip">
                             Year of Purchase
                         </label>
@@ -234,7 +233,7 @@ const AddAProduct = () => {
                         </label>
                         <input {...register('ProductImage', {
                             required: "Please choose a photo of your product!"
-                        })} className="appearance-none block w-full text-gray-700  rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="file" placeholder="Product Image" />
+                        })} className="appearance-none block w-full text-gray-700 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="file" placeholder="Product Image" />
                         {
                             errors.ProductImage ?
                                 <p className="text-red-500 text-xs italic">{errors.ProductImage.message}</p>

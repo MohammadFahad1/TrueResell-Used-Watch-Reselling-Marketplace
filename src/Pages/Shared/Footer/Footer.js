@@ -18,12 +18,12 @@ const Footer = () => {
                 <nav aria-label="Footer Nav" className="mt-12">
                     <ul className="flex flex-wrap justify-center gap-6 md:gap-8 lg:gap-12">
                         <li>
-                            <Link to='/' className="text-gray-700 transition hover:text-gray-700/75" href="/">
+                            <Link to='/' className="text-gray-700 transition hover:text-gray-700/75">
                                 Home
                             </Link>
                         </li>
                         <li>
-                            <Link to='/blog' className="text-gray-700 transition hover:text-gray-700/75" href="/">
+                            <Link to='/blog' className="text-gray-700 transition hover:text-gray-700/75">
                                 Blog
                             </Link>
                         </li>

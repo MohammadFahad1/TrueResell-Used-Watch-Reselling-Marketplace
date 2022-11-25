@@ -39,7 +39,7 @@ const Registration = () => {
                     body: JSON.stringify(currentUser)
                 }).then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('lawFarm-token', data.token);
+                        localStorage.setItem('truresell', data.token);
                     })
 
                 navigate(from)
@@ -67,7 +67,7 @@ const Registration = () => {
                     body: JSON.stringify(currentUser)
                 }).then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('lawFarm-token', data.token);
+                        localStorage.setItem('truresell', data.token);
                     })
 
                 navigate(from)
@@ -101,7 +101,7 @@ const Registration = () => {
                     body: JSON.stringify(currentUser)
                 }).then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('lawFarm-token', data.token);
+                        localStorage.setItem('truresell', data.token);
                     })
 
                 profileUpdate(name, photoURL)

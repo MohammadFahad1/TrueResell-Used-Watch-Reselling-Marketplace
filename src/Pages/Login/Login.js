@@ -36,7 +36,7 @@ const Login = () => {
                     body: JSON.stringify(currentUser)
                 }).then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('lawFarm-token', data.token);
+                        localStorage.setItem('truresell', data.token);
                     })
 
                 navigate(from)
@@ -64,7 +64,7 @@ const Login = () => {
                     body: JSON.stringify(currentUser)
                 }).then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('lawFarm-token', data.token);
+                        localStorage.setItem('truresell', data.token);
                     })
 
                 navigate(from)
@@ -95,7 +95,7 @@ const Login = () => {
                     body: JSON.stringify(currentUser)
                 }).then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('lawFarm-token', data.token);
+                        localStorage.setItem('truresell', data.token);
                     })
                 navigate(from)
                 form.reset();

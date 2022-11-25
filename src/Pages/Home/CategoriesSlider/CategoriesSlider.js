@@ -11,7 +11,7 @@ const CategoriesSlider = () => {
 
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('http://localhost:5000/products')
+        queryFn: () => fetch('http://localhost:5000/categories')
             .then(res => res.json())
     })
 

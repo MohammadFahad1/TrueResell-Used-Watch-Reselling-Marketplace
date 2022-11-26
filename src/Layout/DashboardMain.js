@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom';
 const DashboardMain = () => {
     return (
         <div className='my-24 px-5'>
-            <div className="drawer drawer-mobile max-h-fit">
+            <div className="drawer drawer-mobile h-auto">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content flex flex-col">
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open Menubar</label>

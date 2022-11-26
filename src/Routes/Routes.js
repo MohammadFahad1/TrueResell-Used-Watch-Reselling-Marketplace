@@ -9,6 +9,7 @@ import NotFound from "../Pages/NotFound/NotFound";
 import Products from "../Pages/Products/Products";
 import Registration from "../Pages/Registration/Registration";
 import MyOrders from "../Pages/Shared/Dashboard/MyOrders/MyOrders";
+import Payment from "../Pages/Shared/Dashboard/Payment/Payment";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
                         path: '/dashboard/my-orders', element: <MyOrders></MyOrders>
                     },
                     {
-                        path: '/dashboard/payment/:id', element: <MyOrders></MyOrders>
+                        path: '/dashboard/payment/:id', element: <Payment></Payment>
                     },
                 ]
             }

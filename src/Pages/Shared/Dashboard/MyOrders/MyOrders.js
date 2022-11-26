@@ -4,15 +4,19 @@ import { AuthContext } from '../../../../contexts/AuthProvider';
 
 const MyOrders = () => {
     const [myorders, setMyorders] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
     const { user, loading } = useContext(AuthContext);
 
     useEffect(() => {
         fetch(`http://localhost:5000/myorders/${user?.uid}`)
             .then(res => res.json())
-            .then(data => setMyorders(data))
+            .then(data => {
+                setMyorders(data)
+                setIsLoading(false)
+            })
     }, [user?.uid])
 
-    if (loading && myorders === []) {
+    if (loading && isLoading) {
         return <div className='min-h-screen relative bg-yellow-400'>
             <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2">
                 <div className="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-64 w-64"></div>

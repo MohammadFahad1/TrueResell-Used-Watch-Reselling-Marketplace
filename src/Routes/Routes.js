@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardMain from "../Layout/DashboardMain";
 import Main from "../Layout/Main";
 import AddAProduct from "../Pages/AddAProduct/AddAProduct";
 import Blog from "../Pages/Blog/Blog";
@@ -7,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/NotFound/NotFound";
 import Products from "../Pages/Products/Products";
 import Registration from "../Pages/Registration/Registration";
+import MyOrders from "../Pages/Shared/Dashboard/MyOrders/MyOrders";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -32,6 +34,16 @@ const router = createBrowserRouter([
             },
             {
                 path: '*', element: <NotFound></NotFound>
+            },
+            {
+                path: '/dashboard', element: <PrivateRoute><DashboardMain></DashboardMain></PrivateRoute>, children: [
+                    {
+                        path: '/dashboard/my-orders', element: <MyOrders></MyOrders>
+                    },
+                    {
+                        path: '/dashboard/payment/:id', element: <MyOrders></MyOrders>
+                    },
+                ]
             }
         ]
     }

@@ -25,5 +25,6 @@ code {
 }
 
 .active {
-  color: rgb(185, 0, 40);
+  color: #fff;
+  background-color: red;
 }

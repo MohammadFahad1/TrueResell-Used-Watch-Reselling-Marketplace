@@ -23,14 +23,15 @@ const Navbar = () => {
         <nav className="bg-transparent border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900 w-full" id='navbar'>
             <div className="container flex flex-wrap justify-between items-center mx-auto">
                 <Link to="/" className="flex items-center">
-                    <img src={logo} className="mr-3 w-52 sm:w-52" alt="Think. Feel. Resell." />
+                    <img src={logo} className="mr-3 w-40 sm:w-52" alt="Think. Feel. Resell." />
                 </Link>
                 <div className="flex items-center md:order-2 relative top-0 left-0">
                     {/* Prfile Dropdown Menu */}
                     {
                         user?.uid ?
                             <>
-                                <button onClick={() => logOut()} className="px-3 py-2 border-2 shadow-lg hover:bg-red-500 rounded-xl bg-red-600 text-white mx-2">LogOut</button>
+                                <Link to='/dashboard'><button className="px-3 py-2 border-2 shadow-lg hover:bg-red-500 rounded bg-lime-600 text-white">Dashboard</button></Link>
+                                <button onClick={() => logOut()} className="px-3 py-2 border-2 shadow-lg hover:bg-red-500 rounded bg-red-600 text-white mx-2">LogOut</button>
                                 <button onClick={() => setProfileMenu(!profileMenu)} type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                                     <span className="sr-only">Open user menu</span>
                                     <img className="w-8 h-8 rounded-full" src={user?.photoURL} alt="" />

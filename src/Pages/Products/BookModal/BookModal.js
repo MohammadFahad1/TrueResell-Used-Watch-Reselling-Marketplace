@@ -6,7 +6,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 
 const BookModal = ({ product }) => {
     const { user } = useContext(AuthContext);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const bookProduct = info => {
         const key = Object.keys(info);

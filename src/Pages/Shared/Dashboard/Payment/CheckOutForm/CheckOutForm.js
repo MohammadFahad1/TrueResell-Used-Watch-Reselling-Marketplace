@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
 import {
     CardElement,
     useStripe,
@@ -37,14 +36,38 @@ const CheckOutForm = ({ order }) => {
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
-            card
+            card: card,
+            billing_details: {
+                name: order.bookedByName,
+                email: order.bookedByEmail
+            }
         })
 
         if (error) {
             setCardError(error)
             toast.error(<><b>{error.type}: </b> {error.message}</>);
+        } else {
+            setCardError('')
         }
 
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+                payment_method: {
+                    card: card,
+                    billing_details: {
+                        name: order.bookedByName,
+                        email: order.bookedByEmail
+                    },
+                },
+            },
+        );
+
+        if (confirmError) {
+            setCardError(confirmError.message)
+            return
+        }
+        console.log('paymentIntent', paymentIntent)
     };
 
     return (

@@ -4,10 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CheckOutForm from './CheckOutForm/CheckOutForm';
 
-const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_pk}`);
 
 const Payment = () => {
     const { id } = useParams();
+
+    const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_pk}`);
 
     const [order, setOrder] = useState({});
 

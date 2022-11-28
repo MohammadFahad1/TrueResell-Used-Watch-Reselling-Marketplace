@@ -20,26 +20,30 @@ const Login = () => {
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
             .then(result => {
-
-                toast.success('Successfully Logged In!');
                 const user = result.user;
-
-                const currentUser = {
-                    email: user.email
+                if (user.uid) {
+                    fetch('http://localhost:5000/user', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
+                    })
+                        .then(res => res.json())
+                        .then(data => { })
                 }
 
-                fetch('localhost:5000/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                }).then(res => res.json())
+                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                    .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('truresell', data.token);
+                        console.log(data);
+                        localStorage.setItem('truresell', data.accessToken);
+
+                        navigate(from)
+
+                        toast.success('Successfully Logged In!');
                     })
 
-                navigate(from)
             })
             .catch(error => {
                 return toast.error(error.message)
@@ -51,23 +55,26 @@ const Login = () => {
             .then(result => {
                 toast.success('Successfully Logged In!');
                 const user = result.user;
-
-                const currentUser = {
-                    email: user.email
-                }
-
-                fetch('localhost:5000/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                }).then(res => res.json())
-                    .then(data => {
-                        localStorage.setItem('truresell', data.token);
+                if (user.uid) {
+                    fetch('http://localhost:5000/user', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
                     })
+                        .then(res => res.json())
+                        .then(data => { })
+                }
+                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        localStorage.setItem('truresell', data.accessToken);
 
-                navigate(from)
+                        navigate(from)
+
+                        toast.success('Successfully Logged In!');
+                    })
             })
             .catch(error => toast.error(error.message))
     }
@@ -83,35 +90,30 @@ const Login = () => {
                 toast.success('Successfully Logged In!');
                 const user = result.user;
 
-                const newUser = { uid: user.uid, displayName: user.displayName, email: user?.email, photoURL: user.photoURL }
-                if (newUser) {
+                if (user.uid) {
                     fetch('http://localhost:5000/user', {
                         method: 'POST',
                         headers: {
-                            'content-type': 'application/json'
+                            'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(newUser)
+                        body: JSON.stringify(user)
                     })
                         .then(res => res.json())
-                        .then(data => console.log(data))
+                        .then(data => { })
                 }
 
-                const currentUser = {
-                    email: user.email
-                }
-
-                fetch('localhost:5000/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                }).then(res => res.json())
+                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                    .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('truresell', data.token);
+                        localStorage.setItem('truresell', data.accessToken);
+
+                        navigate(from)
+
+                        form.reset()
+
+                        toast.success('Successfully Logged In!');
                     })
-                navigate(from)
-                form.reset();
+
             })
             .catch(error => toast.error(error.message))
     }

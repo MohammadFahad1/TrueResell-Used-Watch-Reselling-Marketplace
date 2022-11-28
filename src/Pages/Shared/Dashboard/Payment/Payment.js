@@ -4,16 +4,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import CheckOutForm from './CheckOutForm/CheckOutForm';
 
-
 const Payment = () => {
-    const { id } = useParams();
 
-    const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_pk}`);
+    const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_pk);
+
+    const { id } = useParams();
 
     const [order, setOrder] = useState({});
 
-
     const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         fetch(`http://localhost:5000/orders/${id}`)
             .then(res => res.json())
@@ -22,6 +22,7 @@ const Payment = () => {
                 setIsLoading(false)
             })
     }, [id])
+
     if (isLoading) {
         return <div className='min-h-screen relative bg-yellow-400'>
             <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2">

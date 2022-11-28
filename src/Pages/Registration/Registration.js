@@ -27,22 +27,27 @@ const Registration = () => {
                 toast.success('Successfully Logged In!');
                 const user = result.user;
 
-                const currentUser = {
-                    email: user.email
+                if (user.uid) {
+                    fetch('http://localhost:5000/user', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
+                    })
+                        .then(res => res.json())
+                        .then(data => { })
                 }
 
-                fetch('http://localhost:5000/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                }).then(res => res.json())
+                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                    .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('truresell', data.token);
-                    })
+                        localStorage.setItem('truresell', data.accessToken);
 
-                navigate(from)
+                        navigate(from)
+
+                        toast.success('Successfully Logged In!');
+                    })
             })
             .catch(error => {
                 return toast.error(error.message)
@@ -55,22 +60,27 @@ const Registration = () => {
                 toast.success('Successfully Logged In!');
                 const user = result.user;
 
-                const currentUser = {
-                    email: user.email
+                if (user.uid) {
+                    fetch('http://localhost:5000/user', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(user)
+                    })
+                        .then(res => res.json())
+                        .then(data => { })
                 }
 
-                fetch('http://localhost:5000/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                }).then(res => res.json())
+                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                    .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('truresell', data.token);
-                    })
+                        localStorage.setItem('truresell', data.accessToken);
 
-                navigate(from)
+                        navigate(from)
+
+                        toast.success('Successfully Logged In!');
+                    })
             })
             .catch(error => toast.error(error.message))
     }
@@ -81,6 +91,7 @@ const Registration = () => {
         const name = form.name.value;
         const photoURL = form.photourl.value;
         const email = form.email.value;
+        const userType = form.userType.value;
         const password = form.password.value;
 
         const from = location?.state?.from?.pathname || '/';
@@ -88,27 +99,33 @@ const Registration = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                const currentUser = {
-                    email: user.email
-                }
-
-                fetch('http://localhost:5000/jwt', {
-                    method: 'POST',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(currentUser)
-                }).then(res => res.json())
-                    .then(data => {
-                        localStorage.setItem('truresell', data.token);
-                    })
 
                 profileUpdate(name, photoURL)
                     .then(res => {
-                        toast.success("User Created Successfully!");
 
-                        form.reset();
-                        navigate(from)
+                        if (user.uid) {
+                            fetch('http://localhost:5000/user', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(user)
+                            })
+                                .then(res => res.json())
+                                .then(data => { })
+                        }
+
+                        fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                            .then(res => res.json())
+                            .then(data => {
+                                localStorage.setItem('truresell', data.accessToken);
+
+                                navigate(from)
+
+                                form.reset()
+
+                                toast.success('User Created Successfully!');
+                            })
                     })
                     .catch(error => toast.error(error.message))
             })
@@ -133,8 +150,15 @@ const Registration = () => {
                             <input type="text" name='photourl' className="border-b border-gray-500 focus:outline-none text-gray-500 placeholder:opacity-50 font-semibold md:w-72 lg:w-[340px] bg-transparent" />
                         </div>
                         <div className="">
-                            <div className="m-1 text-lg text-gray-500 text-semibold">Email Addres</div>
+                            <div className="m-1 text-lg text-gray-500 text-semibold">Email Address</div>
                             <input type="text" name='email' className="border-b border-gray-500 focus:outline-none text-gray-500 placeholder:opacity-50 font-semibold md:w-72 lg:w-[340px] bg-transparent" />
+                        </div>
+                        <div className="">
+                            <div className="m-1 text-lg text-gray-500 text-semibold">User Type</div>
+                            <select name="userType" className="border-b border-gray-500 focus:outline-none text-gray-500 placeholder:opacity-50 font-semibold md:w-72 lg:w-[340px] bg-transparent">
+                                <option value="buyer">Buyer</option>
+                                <option value="seller">seller</option>
+                            </select>
                         </div>
                         <div className="">
                             <div className="m-1 text-lg text-gray-500 text-semibold">Password</div>

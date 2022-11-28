@@ -42,6 +42,7 @@ const CheckOutForm = ({ order }) => {
                 email: order.bookedByEmail
             }
         })
+            .then(error => console.log(error))
 
         if (error) {
             setCardError(error)

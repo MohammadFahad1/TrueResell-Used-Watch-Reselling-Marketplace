@@ -20,7 +20,7 @@ const CheckOutForm = ({ order }) => {
         })
             .then(res => res.json())
             .then(data => setClientSecret(data.clientSecret))
-    }, [order.sellingPrice])
+    }, [order?.sellingPrice])
 
     const handleSubmit = async (event) => {
         event.preventDefault();

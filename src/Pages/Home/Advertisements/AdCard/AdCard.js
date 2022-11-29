@@ -1,8 +1,10 @@
 import React from 'react';
+import BookModal from '../../../Products/BookModal/BookModal';
 
 const AdCard = ({ ad }) => {
     return (
         <div className="card card-compact bg-base-100 shadow-lg">
+            <BookModal product={ad}></BookModal>
             <figure><img src={ad.image} alt="Shoes" /></figure>
             <div className="card-body">
                 <div className="px-5 pb-5">

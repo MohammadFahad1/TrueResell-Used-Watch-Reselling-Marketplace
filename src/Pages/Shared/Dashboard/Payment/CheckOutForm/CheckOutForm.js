@@ -1,85 +1,98 @@
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
-import {
-    CardElement,
-    useStripe,
-    useElements,
-} from '@stripe/react-stripe-js';
 import toast from 'react-hot-toast';
 
 const CheckOutForm = ({ order }) => {
     const stripe = useStripe();
     const elements = useElements();
+
+    const price = order.sellingPrice;
+
     const [cardError, setCardError] = useState('');
-    const [clientSecret, setClientSecret] = useState('')
+    const [clientSecret, setClientSecret] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:5000/create-payment-intent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ price: order.sellingPrice })
+            body: JSON.stringify({ price })
         })
             .then(res => res.json())
             .then(data => setClientSecret(data.clientSecret))
-    }, [order?.sellingPrice])
+    }, [price])
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
         if (!stripe || !elements) {
-            return
+            return;
         }
 
         const card = elements.getElement(CardElement);
-        if (card === null) {
-            return
+
+        if (card == null) {
+            return;
         }
 
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
-            card: card,
-            billing_details: {
-                name: order.bookedByName,
-                email: order.bookedByEmail
-            }
-        })
-            .then(error => console.log(error))
+            card,
+        });
 
         if (error) {
-            setCardError(error)
-            toast.error(<><b>{error.type}: </b> {error.message}</>);
+            setCardError(error.message)
+        } else if (paymentMethod) {
+            setCardError(paymentMethod.message)
         } else {
             setCardError('')
         }
 
-        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
-            clientSecret,
-            {
-                payment_method: {
-                    card: card,
-                    billing_details: {
-                        name: order.bookedByName,
-                        email: order.bookedByEmail
-                    },
+
+        const { paymentIntent, error: confirmError } = stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card,
+                billing_details: {
+                    name: order.bookedByName,
+                    email: order.bookedByName
                 },
             },
-        );
+        })
+            .then(function (result) {
+                // Handle result.error or result.paymentIntent
+            });
 
         if (confirmError) {
             setCardError(confirmError.message)
-            return
+            return;
         }
-        console.log('paymentIntent', paymentIntent)
+
+        console.log('Payment Intent: ', paymentIntent);
+
     };
 
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <CardElement />
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
+                            },
+                        },
+                    }}
+                />
                 <button className='btn btn-primary mt-2' type="submit" disabled={!stripe || !elements || !clientSecret}>
                     Pay
                 </button>
             </form>
-            <p className="text-red-600">{cardError.message}</p>
+            <p className="text-red-600">{cardError}</p>
         </>
     );
 };

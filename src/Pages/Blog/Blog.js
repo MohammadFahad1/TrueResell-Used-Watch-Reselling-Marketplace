@@ -4,13 +4,13 @@ import useTitle from '../../Hooks/useTitle';
 const Blog = () => {
     useTitle('Blog')
     return (
-        <div className='bg-white py-32 mt-28'>
+        <div className='bg-white py-32'>
             <h1 className='text-3xl font-bold text-center text-black-400'>All Question and Answering Part</h1>
             <div className="space-y-4 mx-5 mt-12">
                 <details className="group border-l-4 border-green-500 bg-gray-50 p-6" open>
                     <summary className="flex cursor-pointer items-center justify-between">
                         <h5 className="text-lg font-medium text-gray-900">
-                            Difference between SQL and NoSQL?
+                            WHAT ARE THE DIFFERENT WAYS TO MANAGE A STATE IN A REACT APPLICATION?
                         </h5>
 
                         <span
@@ -32,14 +32,14 @@ const Blog = () => {
                     </summary>
 
                     <p className="mt-4 leading-relaxed text-gray-700">
-                        SQL is the programming language used to interface with relational databases. (Relational databases model data as records in rows and tables with logical links between them). NoSQL is a class of DBMs that are non-relational and generally do not use SQL.
+                        The Four Kinds of React State to Manage When we talk about state in our applications, it's important to be clear about what types of state actually matter. There are four kinds of state that we need to manage in our applications: local state, global state, session state, and persistent state.
                     </p>
                 </details>
 
                 <details className="group border-l-4 border-green-500 bg-gray-50 p-6">
                     <summary className="flex cursor-pointer items-center justify-between">
                         <h5 className="text-lg font-medium text-gray-900">
-                            What is JWT, and how does it work?
+                            HOW DOES PROTOTYPICAL INHERITANCE WORK?
                         </h5>
 
                         <span
@@ -61,14 +61,16 @@ const Blog = () => {
                     </summary>
 
                     <p className="mt-4 leading-relaxed text-gray-700">
-                        JSON Web Token (JWT) is an open standard (RFC 7519) for securely transmitting information between parties as JSON object. It is compact, readable and digitally signed using a private key/ or a public key pair by the Identity Provider(IdP).
+                        The Prototypal Inheritance is a feature in javascript used to add methods and properties in objects. It is a method by which an object can inherit the properties and methods of another object. Traditionally, in order to get and set the Prototype of an object, we use Object. getPrototypeOf and Object.
+
+
                     </p>
                 </details>
 
                 <details className="group border-l-4 border-green-500 bg-gray-50 p-6">
                     <summary className="flex cursor-pointer items-center justify-between">
                         <h5 className="text-lg font-medium text-gray-900">
-                            What is the difference between javascript and NodeJS?
+                            WHAT IS A UNIT TEST? WHY SHOULD WE WRITE UNIT TESTS?
                         </h5>
 
                         <span
@@ -90,15 +92,13 @@ const Blog = () => {
                     </summary>
 
                     <p className="mt-4 leading-relaxed text-gray-700">
-                        JavaScript is a simple programming language that can be used with any browser that has the JavaScript Engine installed. Node. js, on the other hand, is an interpreter or execution environment for the JavaScript programming language.
-
-
+                        The main objective of unit testing is to isolate written code to test and determine if it works as intended. Unit testing is an important step in the development process, because if done correctly, it can help detect early flaws in code which may be more difficult to find in later testing stages.
                     </p>
                 </details>
                 <details className="group border-l-4 border-green-500 bg-gray-50 p-6">
                     <summary className="flex cursor-pointer items-center justify-between">
                         <h5 className="text-lg font-medium text-gray-900">
-                            How does NodeJS handle multiple requests at the same time?
+                            REACT VS. ANGULAR VS. VUE?
                         </h5>
 
                         <span
@@ -120,9 +120,7 @@ const Blog = () => {
                     </summary>
 
                     <p className="mt-4 leading-relaxed text-gray-700">
-                        NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them.
-
-
+                        Vue provides higher customizability and hence is easier to learn than Angular or React. Further, Vue has an overlap with Angular and React with respect to their functionality like the use of components. Hence, the transition to Vue from either of the two is an easy option.
                     </p>
                 </details>
             </div>

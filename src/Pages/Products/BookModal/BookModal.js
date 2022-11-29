@@ -11,7 +11,20 @@ const BookModal = ({ product }) => {
     const bookProduct = info => {
         const key = Object.keys(info);
         const data = {
-            ...product,
+            productId: product._id,
+            category: product.category,
+            condition: product.condition,
+            mobileNumber: product.originalPrice,
+            originalPrice: product.originalPrice,
+            image: product.image,
+            productName: product.productName,
+            sellingPrice: product.sellingPrice,
+            yearOfPurchase: product.yearOfPurchase,
+            description: product.description,
+            location: product.location,
+            sellerEmail: product.sellerEmail,
+            sellerName: product.sellerName,
+            sellerPhoto: product.sellerPhoto,
             phoneNumber: info[key[0]],
             meetingLocation: info[key[1]],
             bookingTime: new Date().getTime(),
@@ -20,7 +33,7 @@ const BookModal = ({ product }) => {
             bookedByEmail: user?.email,
             bookedByPhoto: user?.photoURL
         }
-        // console.log(data);
+
         fetch('http://localhost:5000/book-product', {
             method: 'POST',
             headers: {
@@ -30,8 +43,12 @@ const BookModal = ({ product }) => {
         })
             .then(res => res.json())
             .then(dt => {
-                toast('Product Booked Successfully!');
-                navigate('/')
+                if (!dt?.message) {
+                    toast.success('Product Booked Successfully!');
+                    navigate('/')
+                } else {
+                    toast.error(dt.message)
+                }
             })
     }
     return (
@@ -71,7 +88,7 @@ const BookModal = ({ product }) => {
                                 <label htmlFor={`meeting-location-${product._id}`} className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Meeting Location</label>
                             </div>
                         </div>
-                        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                        <button type="submit" id={product._id} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><label htmlFor={product._id}>Book Product</label></button>
                     </form>
 
                 </div>

@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
@@ -7,12 +7,24 @@ import { AuthContext } from '../../contexts/AuthProvider';
 
 const AddAProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [userStatus, setUserStatus] = useState(false);
     const { user } = useContext(AuthContext);
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: () => fetch('http://localhost:5000/categories')
             .then(res => res.json())
     })
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/user/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                const verified = data.verified || false;
+                // const newData = { ...data }
+                // newData.verified = verified;
+                setUserStatus(verified)
+            })
+    }, [user?.email])
 
     const navigate = useNavigate();
 
@@ -47,6 +59,7 @@ const AddAProduct = () => {
                         sellerEmail: newProduct.sellerEmail,
                         sellerName: newProduct.sellerName,
                         sellerPhoto: newProduct.sellerPhoto,
+                        sellerStatus: userStatus,
                         uid: newProduct.uid,
                         timestamp: new Date().getTime(),
                         date: new Date()

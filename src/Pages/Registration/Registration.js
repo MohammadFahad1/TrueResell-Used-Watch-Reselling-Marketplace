@@ -108,30 +108,33 @@ const Registration = () => {
                     .then(res => {
 
                         if (user.uid) {
+
+                            const newUser = { ...user, role: userType };
                             fetch('http://localhost:5000/user', {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
                                 },
-                                body: JSON.stringify(user)
+                                body: JSON.stringify(newUser)
                             })
                                 .then(res => res.json())
-                                .then(data => { })
+                                .then(data => {
+
+                                    fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                                        .then(res => res.json())
+                                        .then(data => {
+                                            if (data.accessToken) {
+                                                localStorage.setItem('truresell', data.accessToken);
+
+                                                navigate(from)
+
+                                                form.reset()
+
+                                                toast.success('User Created Successfully!');
+                                            }
+                                        })
+                                })
                         }
-
-                        fetch(`http://localhost:5000/jwt?email=${user.email}`)
-                            .then(res => res.json())
-                            .then(data => {
-                                if (data.accessToken) {
-                                    localStorage.setItem('truresell', data.accessToken);
-
-                                    navigate(from)
-
-                                    form.reset()
-
-                                    toast.success('User Created Successfully!');
-                                }
-                            })
                     })
                     .catch(error => toast.error(error.message))
             })

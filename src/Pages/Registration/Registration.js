@@ -42,11 +42,13 @@ const Registration = () => {
                 fetch(`http://localhost:5000/jwt?email=${user.email}`)
                     .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('truresell', data.accessToken);
+                        if (data.accessToken) {
+                            localStorage.setItem('truresell', data.accessToken);
 
-                        navigate(from)
+                            navigate(from)
 
-                        toast.success('Successfully Logged In!');
+                            toast.success('Successfully Logged In!');
+                        }
                     })
             })
             .catch(error => {
@@ -75,11 +77,13 @@ const Registration = () => {
                 fetch(`http://localhost:5000/jwt?email=${user.email}`)
                     .then(res => res.json())
                     .then(data => {
-                        localStorage.setItem('truresell', data.accessToken);
+                        if (data.accessToken) {
+                            localStorage.setItem('truresell', data.accessToken);
 
-                        navigate(from)
+                            navigate(from)
 
-                        toast.success('Successfully Logged In!');
+                            toast.success('Successfully Logged In!');
+                        }
                     })
             })
             .catch(error => toast.error(error.message))
@@ -118,13 +122,15 @@ const Registration = () => {
                         fetch(`http://localhost:5000/jwt?email=${user.email}`)
                             .then(res => res.json())
                             .then(data => {
-                                localStorage.setItem('truresell', data.accessToken);
+                                if (data.accessToken) {
+                                    localStorage.setItem('truresell', data.accessToken);
 
-                                navigate(from)
+                                    navigate(from)
 
-                                form.reset()
+                                    form.reset()
 
-                                toast.success('User Created Successfully!');
+                                    toast.success('User Created Successfully!');
+                                }
                             })
                     })
                     .catch(error => toast.error(error.message))

@@ -126,7 +126,7 @@ const Registration = () => {
                                             if (data.accessToken) {
                                                 localStorage.setItem('truresell', data.accessToken);
 
-                                                navigate(from)
+                                                window.location.href = from;
 
                                                 form.reset()
 

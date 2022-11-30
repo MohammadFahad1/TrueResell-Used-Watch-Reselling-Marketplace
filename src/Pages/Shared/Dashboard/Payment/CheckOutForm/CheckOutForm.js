@@ -1,6 +1,5 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
 
 const CheckOutForm = ({ order }) => {
     const stripe = useStripe();
@@ -47,7 +46,7 @@ const CheckOutForm = ({ order }) => {
         }
 
 
-        const { paymentIntent, error: confirmError } = stripe.confirmCardPayment(clientSecret, {
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card,
                 billing_details: {
@@ -57,7 +56,7 @@ const CheckOutForm = ({ order }) => {
             },
         })
             .then(function (result) {
-                // Handle result.error or result.paymentIntent
+                console.log(error);
             });
 
         if (confirmError) {

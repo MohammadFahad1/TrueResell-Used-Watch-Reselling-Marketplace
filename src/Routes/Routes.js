@@ -42,6 +42,21 @@ const router = createBrowserRouter([
                         path: '/dashboard/payment/:id', element: <Payment></Payment>
                     },
                     {
+                        path: '/dashboard/my-products', element: <h1>My Products</h1>
+                    },
+                    {
+                        path: '/dashboard/my-buyers', element: <h1>My Buyers</h1>
+                    },
+                    {
+                        path: '/dashboard/all-buyers', element: <h1>All Buyers</h1>
+                    },
+                    {
+                        path: '/dashboard/all-sellers', element: <h1>All Sellers</h1>
+                    },
+                    {
+                        path: '/dashboard/reported-items', element: <h1>Reported Items</h1>
+                    },
+                    {
                         path: '/dashboard/add-a-product', element: <PrivateRoute><AddAProduct></AddAProduct></PrivateRoute>
                     },
                 ]

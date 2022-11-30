@@ -45,7 +45,7 @@ const Registration = () => {
                         if (data.accessToken) {
                             localStorage.setItem('truresell', data.accessToken);
 
-                            navigate(from)
+                            window.location = '/';
 
                             toast.success('Successfully Logged In!');
                         }
@@ -80,7 +80,7 @@ const Registration = () => {
                         if (data.accessToken) {
                             localStorage.setItem('truresell', data.accessToken);
 
-                            navigate(from)
+                            window.location = '/';
 
                             toast.success('Successfully Logged In!');
                         }
@@ -126,7 +126,7 @@ const Registration = () => {
                                             if (data.accessToken) {
                                                 localStorage.setItem('truresell', data.accessToken);
 
-                                                window.location.href = from;
+                                                window.location = '/';
 
                                                 form.reset()
 

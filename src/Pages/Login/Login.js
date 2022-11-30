@@ -12,10 +12,9 @@ const Login = () => {
     const githubProvider = new GithubAuthProvider();
     const { providerLogin, signIn } = useContext(AuthContext);
 
-    const navigate = useNavigate();
     const location = useLocation();
 
-    const from = location?.state?.from?.pathname || '/';
+    // const from = location?.state?.from?.pathname || '/';
 
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
@@ -39,7 +38,7 @@ const Login = () => {
                         if (data.accessToken) {
                             localStorage.setItem('truresell', data.accessToken);
 
-                            navigate(from)
+                            window.location = '/';
 
                             toast.success('Successfully Logged In!');
                         }
@@ -73,7 +72,7 @@ const Login = () => {
                         if (data.accessToken) {
                             localStorage.setItem('truresell', data.accessToken);
 
-                            navigate(from)
+                            window.location = '/';
 
                             toast.success('Successfully Logged In!');
                         }
@@ -111,7 +110,7 @@ const Login = () => {
                         if (data.accessToken) {
                             localStorage.setItem('truresell', data.accessToken);
 
-                            navigate(from)
+                            window.location = '/';
 
                             form.reset()
 

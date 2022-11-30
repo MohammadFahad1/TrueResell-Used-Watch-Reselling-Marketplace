@@ -28,8 +28,8 @@ const DashboardMain = () => {
                         {
                             isSeller &&
                             <>
-                                <li className='shadow-md'><NavLink to='/dashboard/add-a-product'>Add A Product</NavLink></li>
                                 <li className='shadow-md'><NavLink to='/dashboard/my-products'>My Products</NavLink></li>
+                                <li className='shadow-md'><NavLink to='/dashboard/add-a-product'>Add A Product</NavLink></li>
                             </>
                         }
                         {isAdmin &&

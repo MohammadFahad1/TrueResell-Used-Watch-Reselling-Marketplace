@@ -11,9 +11,9 @@ const Navbar = () => {
     const { user, logOut, loading } = useContext(AuthContext);
     const [menu, setMenu] = useState(false);
     const [profileMenu, setProfileMenu] = useState(false);
-    const [isBuyer] = useBuyer(user?.email);
-    const [isSeller] = useSeller(user?.email);
-    const [isAdmin] = useAdmin(user?.email);
+    const [isSeller, isLoading] = useSeller(user?.email);
+    const [isAdmin, adminLoadin] = useAdmin(user?.email);
+    const [isBuyer, buyerLoading] = useBuyer(user?.email)
 
     const NavItems = <>
         <li>
@@ -36,11 +36,16 @@ const Navbar = () => {
                     {
                         user?.uid ?
                             <>
-                                <Link to={
-                                    isAdmin ? '/dashboard/all-sellers' :
-                                        isSeller ? '/dashboard/add-a-product' :
-                                            '/dashboard/my-orders'
-                                }><button className="px-3 py-2 border-2 shadow-lg hover:bg-red-500 rounded bg-lime-600 text-white">Dashboard</button></Link>
+                                {
+                                    (isLoading || adminLoadin || buyerLoading) ?
+                                        <Link to={
+                                            isAdmin ? '/dashboard/all-sellers' :
+                                                isSeller ? '/dashboard/my-products' :
+                                                    '/dashboard/my-orders'
+                                        }><button className="px-3 py-2 border-2 shadow-lg hover:bg-red-500 rounded bg-lime-600 text-white">Dashboard</button></Link>
+                                        :
+                                        ''
+                                }
                                 <button onClick={() => logOut()} className="px-3 py-2 border-2 shadow-lg hover:bg-red-500 rounded bg-red-600 text-white mx-2">LogOut</button>
                                 <button onClick={() => setProfileMenu(!profileMenu)} type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                                     <span className="sr-only">Open user menu</span>

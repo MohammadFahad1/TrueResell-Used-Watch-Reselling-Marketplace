@@ -77,7 +77,7 @@ const AddAProduct = () => {
                         .then(data => {
                             if (data.acknowledged) {
                                 toast.success('Product Added Successfuly!');
-                                navigate('/products')
+                                navigate('/dashboard/my-products')
                             } else {
                                 toast.error('Sorry, Something went wrong while adding the product!')
                             }

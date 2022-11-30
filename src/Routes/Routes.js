@@ -9,6 +9,7 @@ import NotFound from "../Pages/NotFound/NotFound";
 import Products from "../Pages/Products/Products";
 import Registration from "../Pages/Registration/Registration";
 import MyOrders from "../Pages/Shared/Dashboard/MyOrders/MyOrders";
+import MyProducts from "../Pages/Shared/Dashboard/MyProducts/MyProducts";
 import Payment from "../Pages/Shared/Dashboard/Payment/Payment";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import BuyerRoute from "./BuyerRoute/BuyerRoute";
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
                         path: '/dashboard/payment/:id', element: <BuyerRoute><Payment></Payment></BuyerRoute>
                     },
                     {
-                        path: '/dashboard/my-Products', element: <SellerRoute><h1>My Products</h1></SellerRoute>
+                        path: '/dashboard/my-Products', element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
                     },
                     {
                         path: '/dashboard/add-a-product', element: <SellerRoute><AddAProduct></AddAProduct></SellerRoute>

@@ -60,6 +60,7 @@ const AddAProduct = () => {
                         sellerName: newProduct.sellerName,
                         sellerPhoto: newProduct.sellerPhoto,
                         sellerStatus: userStatus,
+                        advertise: false,
                         uid: newProduct.uid,
                         timestamp: new Date().getTime(),
                         date: new Date()

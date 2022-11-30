@@ -7,9 +7,9 @@ import useSeller from '../Hooks/useSeller';
 
 const DashboardMain = () => {
     const { user } = useContext(AuthContext);
-    const [isAdmin] = useAdmin(user.email);
-    const [isBuyer] = useBuyer(user.email)
-    const [isSeller] = useSeller(user.email)
+    const [isAdmin] = useAdmin(user?.email);
+    const [isBuyer] = useBuyer(user?.email)
+    const [isSeller] = useSeller(user?.email)
     return (
         <div className='my-24 px-5'>
             <div className="drawer drawer-mobile h-auto">
@@ -30,7 +30,6 @@ const DashboardMain = () => {
                             <>
                                 <li className='shadow-md'><NavLink to='/dashboard/add-a-product'>Add A Product</NavLink></li>
                                 <li className='shadow-md'><NavLink to='/dashboard/my-products'>My Products</NavLink></li>
-                                <li className='shadow-md'><NavLink to='/dashboard/my-buyers'>My Buyers</NavLink></li>
                             </>
                         }
                         {isAdmin &&

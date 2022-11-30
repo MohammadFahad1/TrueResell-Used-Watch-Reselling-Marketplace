@@ -48,9 +48,6 @@ const router = createBrowserRouter([
                         path: '/dashboard/my-Products', element: <SellerRoute><h1>My Products</h1></SellerRoute>
                     },
                     {
-                        path: '/dashboard/my-buyers', element: <SellerRoute><h1>My Buyers</h1></SellerRoute>
-                    },
-                    {
                         path: '/dashboard/add-a-product', element: <SellerRoute><AddAProduct></AddAProduct></SellerRoute>
                     },
                     {

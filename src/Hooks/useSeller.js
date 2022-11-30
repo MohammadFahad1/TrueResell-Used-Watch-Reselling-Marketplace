@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
-const useAdmin = email => {
-    const [isAdmin, setIsAdmin] = useState(false);
+const useSeller = email => {
+    const [isSeller, setIsSeller] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -9,14 +9,14 @@ const useAdmin = email => {
             fetch(`http://localhost:5000/user/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    if (data.role === "Admin") {
-                        setIsAdmin(true)
+                    if (data.role === "seller") {
+                        setIsSeller(true)
                         setIsLoading(false)
                     }
                 })
         }
     }, [email])
-    return [isAdmin, isLoading];
+    return [isSeller, isLoading];
 }
 
-export default useAdmin;
+export default useSeller;

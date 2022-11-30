@@ -2,10 +2,14 @@ import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../contexts/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
+import useBuyer from '../Hooks/useBuyer';
+import useSeller from '../Hooks/useSeller';
 
 const DashboardMain = () => {
     const { user } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user.email);
+    const [isBuyer] = useBuyer(user.email)
+    const [isSeller] = useSeller(user.email)
     return (
         <div className='my-24 px-5'>
             <div className="drawer drawer-mobile h-auto">
@@ -17,10 +21,18 @@ const DashboardMain = () => {
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 flex flex-col gap-2 text-red-600">
-                        <li className='shadow-md'><NavLink to='/dashboard/my-orders'>My Orders</NavLink></li>
-                        <li className='shadow-md'><NavLink to='/dashboard/add-a-product'>Add A Product</NavLink></li>
-                        <li className='shadow-md'><NavLink to='/dashboard/my-products'>My Products</NavLink></li>
-                        <li className='shadow-md'><NavLink to='/dashboard/my-buyers'>My Buyers</NavLink></li>
+                        {
+                            isBuyer &&
+                            <li className='shadow-md'><NavLink to='/dashboard/my-orders'>My Orders</NavLink></li>
+                        }
+                        {
+                            isSeller &&
+                            <>
+                                <li className='shadow-md'><NavLink to='/dashboard/add-a-product'>Add A Product</NavLink></li>
+                                <li className='shadow-md'><NavLink to='/dashboard/my-products'>My Products</NavLink></li>
+                                <li className='shadow-md'><NavLink to='/dashboard/my-buyers'>My Buyers</NavLink></li>
+                            </>
+                        }
                         {isAdmin &&
                             <>
                                 <li className='shadow-md'><NavLink to='/dashboard/all-sellers'>All Sellers</NavLink></li>

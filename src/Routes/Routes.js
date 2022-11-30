@@ -8,6 +8,7 @@ import Login from "../Pages/Login/Login";
 import NotFound from "../Pages/NotFound/NotFound";
 import Products from "../Pages/Products/Products";
 import Registration from "../Pages/Registration/Registration";
+import AllSellers from "../Pages/Shared/Dashboard/AllSellers/AllSellers";
 import MyOrders from "../Pages/Shared/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../Pages/Shared/Dashboard/MyProducts/MyProducts";
 import Payment from "../Pages/Shared/Dashboard/Payment/Payment";
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
                         path: '/dashboard/all-buyers', element: <AdminRoute><h1>All Buyers</h1></AdminRoute>
                     },
                     {
-                        path: '/dashboard/all-sellers', element: <AdminRoute><h1>All Sellers</h1></AdminRoute>
+                        path: '/dashboard/all-sellers', element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
                     },
                     {
                         path: '/dashboard/reported-items', element: <AdminRoute><h1>Reported Items</h1></AdminRoute>

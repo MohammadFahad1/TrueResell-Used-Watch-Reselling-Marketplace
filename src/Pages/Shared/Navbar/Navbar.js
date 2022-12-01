@@ -13,7 +13,7 @@ const Navbar = () => {
     const [profileMenu, setProfileMenu] = useState(false);
     const [isSeller, isLoading] = useSeller(user?.email);
     const [isAdmin, adminLoadin] = useAdmin(user?.email);
-    const [isBuyer, buyerLoading] = useBuyer(user?.email)
+    const [, buyerLoading] = useBuyer(user?.email)
 
     const NavItems = <>
         <li>

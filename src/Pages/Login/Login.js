@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+// import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { FaGooglePlus, FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../contexts/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
@@ -12,10 +13,11 @@ const Login = () => {
     const githubProvider = new GithubAuthProvider();
     const { providerLogin, signIn } = useContext(AuthContext);
 
-    const location = useLocation();
-    const navigate = useNavigate();
-
-    const from = location?.state?.from?.pathname || '/';
+    /*     
+        const location = useLocation();
+        const navigate = useNavigate();
+        const from = location?.state?.from?.pathname || '/'; 
+    */
 
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
@@ -30,7 +32,9 @@ const Login = () => {
                         body: JSON.stringify(user)
                     })
                         .then(res => res.json())
-                        .then(data => { })
+                        .then(data => {
+                            window.location = '/';
+                        })
                 }
 
                 fetch(`http://localhost:5000/jwt?email=${user.email}`)
@@ -65,7 +69,9 @@ const Login = () => {
                         body: JSON.stringify(user)
                     })
                         .then(res => res.json())
-                        .then(data => { })
+                        .then(data => {
+                            window.location = '/';
+                        })
                 }
                 fetch(`http://localhost:5000/jwt?email=${user.email}`)
                     .then(res => res.json())
@@ -102,7 +108,9 @@ const Login = () => {
                         body: JSON.stringify(user)
                     })
                         .then(res => res.json())
-                        .then(data => { })
+                        .then(data => {
+                            window.location = '/';
+                        })
                 }
 
                 fetch(`http://localhost:5000/jwt?email=${user.email}`)

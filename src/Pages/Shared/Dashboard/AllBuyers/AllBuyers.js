@@ -3,12 +3,12 @@ import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
 
-const AllSellers = () => {
+const AllBuyers = () => {
     const { loading } = useContext(AuthContext);
 
-    const { data: AllSellers = [], isLoading, refetch } = useQuery({
-        queryKey: ['AllSellers'],
-        queryFn: () => fetch(`http://localhost:5000/all-seller`)
+    const { data: AllBuyers = [], isLoading, refetch } = useQuery({
+        queryKey: ['AllBuyers'],
+        queryFn: () => fetch(`http://localhost:5000/all-buyer`)
             .then(res => res.json())
     })
 
@@ -22,7 +22,7 @@ const AllSellers = () => {
                 .then(data => {
                     if (data.deletedCount > 0) {
                         refetch()
-                        toast.success('Seller Deleted Successfully!');
+                        toast.success('Buyer Deleted Successfully!');
                     }
                 })
         }
@@ -36,7 +36,7 @@ const AllSellers = () => {
             .then(data => {
                 if (data.modifiedCount > 0) {
                     refetch()
-                    toast.success('User Verified Successfully!')
+                    toast.success('Buyer Verified Successfully!')
                 }
             })
     }
@@ -51,7 +51,6 @@ const AllSellers = () => {
 
     return (
         <div>
-            <h1 className='text-3xl font-bold my-4'>All Sellers</h1>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">
                     <thead>
@@ -66,7 +65,7 @@ const AllSellers = () => {
                     </thead>
                     <tbody>
                         {
-                            AllSellers?.map((user, i) =>
+                            AllBuyers?.map((user, i) =>
                                 <tr key={user._id}>
                                     <th>
                                         {i + 1}
@@ -122,4 +121,4 @@ const AllSellers = () => {
     );
 };
 
-export default AllSellers;
+export default AllBuyers;

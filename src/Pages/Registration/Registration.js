@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
-import { useLocation, useNavigate } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 import { FaGooglePlus, FaGithub } from "react-icons/fa";
 import { Link } from 'react-router-dom';
@@ -12,13 +12,13 @@ const Registration = () => {
     useTitle('Registration')
 
     const { createUser, profileUpdate, providerLogin } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
+    // const navigate = useNavigate();
+    // const location = useLocation();
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
-    const from = location?.state?.from?.pathname || '/';
+    // const from = location?.state?.from?.pathname || '/';
 
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
@@ -98,7 +98,7 @@ const Registration = () => {
         const userType = form.userType.value;
         const password = form.password.value;
 
-        const from = location?.state?.from?.pathname || '/';
+        // const from = location?.state?.from?.pathname || '/';
 
         createUser(email, password)
             .then(result => {

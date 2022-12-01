@@ -24,7 +24,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 if (user.uid) {
-                    fetch('http://localhost:5000/user', {
+                    fetch('https://true-resell.vercel.app/user', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ const Login = () => {
                         })
                 }
 
-                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                fetch(`https://true-resell.vercel.app/jwt?email=${user.email}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data.accessToken) {
@@ -61,7 +61,7 @@ const Login = () => {
                 toast.success('Successfully Logged In!');
                 const user = result.user;
                 if (user.uid) {
-                    fetch('http://localhost:5000/user', {
+                    fetch('https://true-resell.vercel.app/user', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -73,7 +73,7 @@ const Login = () => {
                             window.location = '/';
                         })
                 }
-                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                fetch(`https://true-resell.vercel.app/jwt?email=${user.email}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data.accessToken) {
@@ -100,7 +100,7 @@ const Login = () => {
                 const user = result.user;
 
                 if (user.uid) {
-                    fetch('http://localhost:5000/user', {
+                    fetch('https://true-resell.vercel.app/user', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -113,7 +113,7 @@ const Login = () => {
                         })
                 }
 
-                fetch(`http://localhost:5000/jwt?email=${user.email}`)
+                fetch(`https://true-resell.vercel.app/jwt?email=${user.email}`)
                     .then(res => res.json())
                     .then(data => {
                         if (data.accessToken) {

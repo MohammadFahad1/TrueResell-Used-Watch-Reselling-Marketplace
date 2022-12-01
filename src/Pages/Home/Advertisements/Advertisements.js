@@ -7,7 +7,7 @@ const Advertisements = () => {
 
     const { data: ads = [], isLoading } = useQuery({
         queryKey: ['ads'],
-        queryFn: () => axios.get('http://localhost:5000/ads')
+        queryFn: () => axios.get('https://true-resell.vercel.app/ads')
     })
 
     if (isLoading) {

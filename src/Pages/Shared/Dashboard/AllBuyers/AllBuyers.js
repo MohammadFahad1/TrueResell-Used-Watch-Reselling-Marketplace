@@ -8,14 +8,14 @@ const AllBuyers = () => {
 
     const { data: AllBuyers = [], isLoading, refetch } = useQuery({
         queryKey: ['AllBuyers'],
-        queryFn: () => fetch(`http://localhost:5000/all-buyer`)
+        queryFn: () => fetch(`https://true-resell.vercel.app/all-buyer`)
             .then(res => res.json())
     })
 
     const handleDelete = userId => {
         const agree = window.confirm(`Are you sure about deleting the user!`);
         if (agree) {
-            fetch(`http://localhost:5000/user/${userId}`, {
+            fetch(`https://true-resell.vercel.app/user/${userId}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -29,7 +29,7 @@ const AllBuyers = () => {
     }
 
     const handleverified = user => {
-        fetch(`http://localhost:5000/user/verified/${user._id}`, {
+        fetch(`https://true-resell.vercel.app/user/verified/${user._id}`, {
             method: 'PUT'
         })
             .then(res => res.json())

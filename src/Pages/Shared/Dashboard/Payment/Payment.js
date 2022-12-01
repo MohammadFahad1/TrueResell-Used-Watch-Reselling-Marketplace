@@ -15,7 +15,7 @@ const Payment = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders/${id}`)
+        fetch(`https://true-resell.vercel.app/orders/${id}`)
             .then(res => res.json())
             .then(data => {
                 setOrder(data)

@@ -8,7 +8,7 @@ const MyOrders = () => {
     const { user, loading } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myorders/${user?.uid}`)
+        fetch(`https://true-resell.vercel.app/myorders/${user?.uid}`)
             .then(res => res.json())
             .then(data => {
                 setMyorders(data)

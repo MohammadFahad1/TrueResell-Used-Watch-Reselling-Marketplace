@@ -35,7 +35,7 @@ const AdCard = ({ ad }) => {
             wishedByEmail: user.email,
             wishedByPhoto: user.photoURL
         }
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://true-resell.vercel.app/wishlist', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -52,13 +52,13 @@ const AdCard = ({ ad }) => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${ad.sellerEmail}`)
+        fetch(`https://true-resell.vercel.app/user/${ad.sellerEmail}`)
             .then(res => res.json())
             .then(data => setVerified(data.verified))
     }, [ad?.sellerEmail])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/wishlist?productId=${ad?._id}&&userId=${user?.uid}`)
+        fetch(`https://true-resell.vercel.app/wishlist?productId=${ad?._id}&&userId=${user?.uid}`)
             .then(res => res.json())
             .then(data => setWished(data))
     }, [ad?._id, user?.uid])

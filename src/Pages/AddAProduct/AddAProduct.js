@@ -11,12 +11,12 @@ const AddAProduct = () => {
     const { user } = useContext(AuthContext);
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('http://localhost:5000/categories')
+        queryFn: () => fetch('https://true-resell.vercel.app/categories')
             .then(res => res.json())
     })
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user.email}`)
+        fetch(`https://true-resell.vercel.app/user/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 const verified = data.verified || false;
@@ -67,7 +67,7 @@ const AddAProduct = () => {
                     }
 
                     // Save product into database
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://true-resell.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

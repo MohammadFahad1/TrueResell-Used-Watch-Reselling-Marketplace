@@ -34,7 +34,7 @@ const BookModal = ({ product, setSuccess }) => {
             bookedByPhoto: user?.photoURL
         }
 
-        fetch('http://localhost:5000/book-product', {
+        fetch('https://true-resell.vercel.app/book-product', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

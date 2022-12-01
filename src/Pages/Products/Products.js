@@ -11,7 +11,7 @@ const Products = () => {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/products/${id}`)
+        axios.get(`https://true-resell.vercel.app/products/${id}`)
             .then(res => {
                 setProducts(res.data);
                 setIsLoading(false);
@@ -20,7 +20,7 @@ const Products = () => {
 
     const { data: category = {} } = useQuery({
         queryKey: ['category'],
-        queryFn: () => fetch(`http://localhost:5000/category/${id}`)
+        queryFn: () => fetch(`https://true-resell.vercel.app/category/${id}`)
             .then(res => res.json())
     })
 

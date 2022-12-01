@@ -8,14 +8,14 @@ const MyProducts = () => {
 
     const { data: MyProducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myproducts'],
-        queryFn: () => fetch(`http://localhost:5000/my-products/${user?.email}`)
+        queryFn: () => fetch(`https://true-resell.vercel.app/my-products/${user?.email}`)
             .then(res => res.json())
     })
 
     const handleDelete = productId => {
         const agree = window.confirm(`Are you sure about deleting data!`);
         if (agree) {
-            fetch(`http://localhost:5000/products/${productId}`, {
+            fetch(`https://true-resell.vercel.app/products/${productId}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -29,7 +29,7 @@ const MyProducts = () => {
     }
 
     const handleAdvertise = product => {
-        fetch(`http://localhost:5000/products/advertise/${product._id}`, {
+        fetch(`https://true-resell.vercel.app/products/advertise/${product._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

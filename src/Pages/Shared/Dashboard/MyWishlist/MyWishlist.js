@@ -8,7 +8,7 @@ const MyWishlist = () => {
     const { user, loading } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/wishlist/${user?.email}`)
+        fetch(`https://true-resell.vercel.app/wishlist/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyWishlist(data)

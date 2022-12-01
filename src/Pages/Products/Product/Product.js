@@ -1,17 +1,68 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import BookModal from '../BookModal/BookModal';
 
 const Product = ({ product }) => {
     const [success, setSuccess] = useState(false);
     const { image, productName } = product;
-
     const [verified, setVerified] = useState(false);
+    const [wished, setWished] = useState(false);
+    const { user } = useContext(AuthContext);
+
+    const handleWish = product => {
+        const newProduct = {
+            productId: product._id,
+            advertise: product.advertise,
+            category: product.category,
+            condition: product.condition,
+            date: product.date,
+            description: product.description,
+            image: product.image,
+            location: product.location,
+            mobileNumber: product.mobileNumber,
+            originalPrice: product.originalPrice,
+            productName: product.productName,
+            sellerEmail: product.sellerEmail,
+            sellerName: product.sellerName,
+            sellerPhoto: product.sellerPhoto,
+            sellerStatus: product.sellerStatus,
+            sellingPrice: product.sellingPrice,
+            timestamp: product.timestamp,
+            uid: product.uid,
+            yearOfPurchase: product.yearOfPurchase,
+            wishedById: user.uid,
+            wishedByName: user.displayName,
+            wishedByEmail: user.email,
+            wishedByPhoto: user.photoURL
+        }
+        fetch('http://localhost:5000/wishlist', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    setWished(true)
+                    toast.success('Product Added to Wishlist!')
+                }
+            })
+    }
 
     useEffect(() => {
         fetch(`http://localhost:5000/user/${product.sellerEmail}`)
             .then(res => res.json())
             .then(data => setVerified(data.verified))
     }, [product.sellerEmail])
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/wishlist?productId=${product._id}&&userId=${user.uid}`)
+            .then(res => res.json())
+            .then(data => setWished(data))
+    }, [product._id, user.uid])
 
     return (
         <div className="w-full max-w-sm bg-white rounded-lg shadow-lg dark:bg-gray-800 dark:border-gray-700">
@@ -36,9 +87,17 @@ const Product = ({ product }) => {
                     <span className="text-sm font-bold text-gray-900 dark:text-white">Original Price: <del>${product.originalPrice}</del></span>
                     <span className="text-md font-bold text-gray-900 dark:text-white">Resale Price: ${product.sellingPrice}</span>
                 </div>
-                <label htmlFor={product._id} className="btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">
-                    Book Now
-                </label>
+                <div className='w-full flex justify-between'>
+                    <label htmlFor={product._id} className="btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Book Now
+                    </label>
+                    {
+                        wished ?
+                            <button className='btn btn-disabled'>Added to Wishlist</button>
+                            :
+                            <button onClick={() => handleWish(product)} className='btn btn-warning'>Add to Wishlist</button>
+                    }
+                </div>
             </div>
         </div>
 

@@ -23,7 +23,10 @@ const DashboardMain = () => {
                     <ul className="menu p-4 w-80 bg-base-100 flex flex-col gap-2 text-red-600">
                         {
                             isBuyer &&
-                            <li className='shadow-md'><NavLink to='/dashboard/my-orders'>My Orders</NavLink></li>
+                            <>
+                                <li className='shadow-md'><NavLink to='/dashboard/my-orders'>My Orders</NavLink></li>
+                                <li className='shadow-md'><NavLink to='/dashboard/my-wishlist'>My WishList</NavLink></li>
+                            </>
                         }
                         {
                             isSeller &&

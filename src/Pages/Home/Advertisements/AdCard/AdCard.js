@@ -1,15 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../../../contexts/AuthProvider';
 import BookModal from '../../../Products/BookModal/BookModal';
 
 const AdCard = ({ ad }) => {
     const [success, setSuccess] = useState(false);
     const [verified, setVerified] = useState(false);
+    const [wished, setWished] = useState(false);
+    const { user } = useContext(AuthContext);
+
+    const handleWish = product => {
+        const newProduct = {
+            productId: product._id,
+            advertise: product.advertise,
+            category: product.category,
+            condition: product.condition,
+            date: product.date,
+            description: product.description,
+            image: product.image,
+            location: product.location,
+            mobileNumber: product.mobileNumber,
+            originalPrice: product.originalPrice,
+            productName: product.productName,
+            sellerEmail: product.sellerEmail,
+            sellerName: product.sellerName,
+            sellerPhoto: product.sellerPhoto,
+            sellerStatus: product.sellerStatus,
+            sellingPrice: product.sellingPrice,
+            timestamp: product.timestamp,
+            uid: product.uid,
+            yearOfPurchase: product.yearOfPurchase,
+            wishedById: user.uid,
+            wishedByName: user.displayName,
+            wishedByEmail: user.email,
+            wishedByPhoto: user.photoURL
+        }
+        fetch('http://localhost:5000/wishlist', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newProduct)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    setWished(true)
+                    toast.success('Product Added to Wishlist!')
+                }
+            })
+    }
 
     useEffect(() => {
         fetch(`http://localhost:5000/user/${ad.sellerEmail}`)
             .then(res => res.json())
             .then(data => setVerified(data.verified))
-    }, [ad.sellerEmail])
+    }, [ad?.sellerEmail])
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/wishlist?productId=${ad?._id}&&userId=${user?.uid}`)
+            .then(res => res.json())
+            .then(data => setWished(data))
+    }, [ad?._id, user?.uid])
 
     return (
         <div className="card card-compact bg-base-100 shadow-lg">
@@ -36,10 +88,16 @@ const AdCard = ({ ad }) => {
                         <span className="text-md font-bold text-gray-900 dark:text-white">Resale Price: ${ad.sellingPrice}</span>
                     </div>
 
-                    <div className="card-actions justify-end">
-                        <label htmlFor={ad._id} className="btn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">
+                    <div className="card-actions justify-between">
+                        <label htmlFor={ad._id} className="btn btn-secondary">
                             Book Now
                         </label>
+                        {
+                            wished ?
+                                <button className='btn btn-disabled'>Added to Wishlist</button>
+                                :
+                                <button onClick={() => handleWish(ad)} className='btn btn-warning'>Add to Wishlist</button>
+                        }
                     </div>
                 </div>
             </div>

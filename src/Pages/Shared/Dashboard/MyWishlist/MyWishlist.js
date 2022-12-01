@@ -2,19 +2,19 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 
-const MyOrders = () => {
-    const [myorders, setMyorders] = useState([]);
+const MyWishlist = () => {
+    const [myWishlist, setMyWishlist] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { user, loading } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myorders/${user?.uid}`)
+        fetch(`http://localhost:5000/wishlist/${user?.email}`)
             .then(res => res.json())
             .then(data => {
-                setMyorders(data)
+                setMyWishlist(data)
                 setIsLoading(false)
             })
-    }, [user?.uid])
+    }, [user?.email])
 
     if (loading && isLoading) {
         return <div className='min-h-screen relative bg-yellow-400'>
@@ -40,7 +40,7 @@ const MyOrders = () => {
                     </thead>
                     <tbody>
                         {
-                            myorders?.map((order, i) =>
+                            myWishlist?.map((order, i) =>
                                 <tr key={order._id}>
                                     <th>
                                         {i + 1}
@@ -61,7 +61,7 @@ const MyOrders = () => {
                                     <td>{order.sellingPrice}</td>
                                     <th>
                                         <Link to={`/dashboard/payment/${order.productId}`}>
-                                            <button className="btn btn-secondary bg-red-600 btn-xs">Pay Now</button>
+                                            <button className="btn btn-secondary bg-red-600 btn-xs">Purchase</button>
                                         </Link>
                                     </th>
                                 </tr>
@@ -82,4 +82,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default MyWishlist;

@@ -46,7 +46,7 @@ const BookModal = ({ product, setSuccess }) => {
                 if (!dt?.message) {
                     toast.success('Product Booked Successfully!');
                     setSuccess(true)
-                    navigate('/')
+                    navigate('/dashboard/my-orders')
                 } else {
                     toast.error(dt.message)
                 }

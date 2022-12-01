@@ -12,6 +12,7 @@ import AllBuyers from "../Pages/Shared/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../Pages/Shared/Dashboard/AllSellers/AllSellers";
 import MyOrders from "../Pages/Shared/Dashboard/MyOrders/MyOrders";
 import MyProducts from "../Pages/Shared/Dashboard/MyProducts/MyProducts";
+import MyWishlist from "../Pages/Shared/Dashboard/MyWishlist/MyWishlist";
 import Payment from "../Pages/Shared/Dashboard/Payment/Payment";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import BuyerRoute from "./BuyerRoute/BuyerRoute";
@@ -60,7 +61,7 @@ const router = createBrowserRouter([
                         path: '/dashboard/all-sellers', element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
                     },
                     {
-                        path: '/dashboard/reported-items', element: <AdminRoute><h1>Reported Items</h1></AdminRoute>
+                        path: '/dashboard/my-wishlist', element: <BuyerRoute><MyWishlist></MyWishlist></BuyerRoute>
                     }
                 ]
             }

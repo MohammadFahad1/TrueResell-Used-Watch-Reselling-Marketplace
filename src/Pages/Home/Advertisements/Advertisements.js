@@ -17,17 +17,18 @@ const Advertisements = () => {
             </div>
         </div>
     }
-
-    return (
-        <div className='my-20 bg-slate-200 py-6'>
-            <h2 className="text-4xl font-bold text-center text-red-600 mb-6">Advertisements</h2>
-            <div className='grid grid-cols-1 sm:grid-cols-2 px-5 max-w-7xl mx-auto gap-8'>
-                {
-                    ads?.data?.map(ad => <AdCard key={ad._id} ad={ad}></AdCard>)
-                }
+    if (ads.data.length > 0) {
+        return (
+            <div className='my-20 bg-slate-200 py-6'>
+                <h2 className="text-4xl font-bold text-center text-red-600 mb-6">Advertisements</h2>
+                <div className='grid grid-cols-1 sm:grid-cols-2 px-5 max-w-7xl mx-auto gap-8'>
+                    {
+                        ads?.data?.map(ad => <AdCard key={ad._id} ad={ad}></AdCard>)
+                    }
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 };
 
 export default Advertisements;

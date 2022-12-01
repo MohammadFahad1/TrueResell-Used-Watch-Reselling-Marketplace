@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
     return (
         <>
             <section
-                className="relative bg-[url(https://images.unsplash.com/photo-1604014237800-1c9102c219da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80)] bg-cover bg-center bg-no-repeat"
+                className="relative bg-[url(https://pyxis.nymag.com/v1/imgs/ba1/294/0f7135f5a42221d4289460c882ff43a1bc-luxury-watch-bros.2x.rsocial.w600.jpg)] bg-cover bg-center bg-no-repeat"
             >
                 <div
                     className="absolute inset-0 bg-white/75 sm:bg-transparent sm:bg-gradient-to-r sm:from-white/95 sm:to-white/25"
@@ -16,31 +15,15 @@ const HeroSection = () => {
                 >
                     <div className="max-w-xl text-center sm:text-left">
                         <h1 className="text-3xl font-extrabold sm:text-5xl">
-                            Let us find your
-
+                            Best Watch
                             <strong className="block font-extrabold text-rose-700">
-                                Forever Home.
+                                Reselling Marketplace.
                             </strong>
                         </h1>
 
                         <p className="mt-4 max-w-lg sm:text-xl sm:leading-relaxed">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo
-                            tenetur fuga ducimus numquam ea!
+                            Better three hours too soon than a minute too late.
                         </p>
-
-                        <div className="mt-8 flex flex-wrap gap-4 text-center">
-                            <Link to=''
-                                className="block w-full rounded bg-rose-600 px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500 sm:w-auto"
-                            >
-                                Get Started
-                            </Link>
-
-                            <Link to=''
-                                className="block w-full rounded bg-white px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500 sm:w-auto"
-                            >
-                                Learn More
-                            </Link>
-                        </div>
                     </div>
                 </div>
             </section>

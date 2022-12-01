@@ -59,12 +59,6 @@ const Navbar = () => {
                                         <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{user?.email}</span>
                                     </div>
                                     <ul className="py-1" aria-labelledby="user-menu-button">
-                                        <li>
-                                            <Link to="/my-products" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">My Products</Link>
-                                        </li>
-                                        <li>
-                                            <Link to="/add-a-product" className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Add Product</Link>
-                                        </li>
                                         <li className='bg-red-300 font-bold'>
                                             <button onClick={() => logOut().then().catch()} className="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white w-full text-left">Sign out</button>
                                         </li>

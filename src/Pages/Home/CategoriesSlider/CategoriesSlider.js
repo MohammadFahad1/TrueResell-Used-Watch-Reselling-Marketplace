@@ -17,7 +17,7 @@ const CategoriesSlider = () => {
 
     return (
         <div className="my-12 px-10">
-            <h1 className="text-4xl font-bold text-center mb-3">Choose Category</h1>
+            <h1 className="text-4xl font-bold text-center mb-5">Choose Category</h1>
             <Swiper
                 breakpoints={{
                     640: {

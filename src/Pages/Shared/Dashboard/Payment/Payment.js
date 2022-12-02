@@ -2,11 +2,13 @@ import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import useTitle from '../../../../Hooks/useTitle';
 import CheckOutForm from './CheckOutForm/CheckOutForm';
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_pk);
 
 const Payment = () => {
+    useTitle('Payment')
 
     const { id } = useParams();
 

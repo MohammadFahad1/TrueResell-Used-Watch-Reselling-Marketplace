@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthProvider';
+import useTitle from '../../../../Hooks/useTitle';
 
 const MyOrders = () => {
     const [myorders, setMyorders] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { user, loading } = useContext(AuthContext);
+    useTitle('My Orders')
 
     useEffect(() => {
         fetch(`https://true-resell.vercel.app/myorders/${user?.uid}`)

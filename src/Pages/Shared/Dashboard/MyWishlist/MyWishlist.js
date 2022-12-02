@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthProvider';
+import useTitle from '../../../../Hooks/useTitle';
 
 const MyWishlist = () => {
     const [myWishlist, setMyWishlist] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const { user, loading } = useContext(AuthContext);
+    useTitle('My Wishlist')
 
     useEffect(() => {
         fetch(`https://true-resell.vercel.app/wishlist/${user?.email}`)

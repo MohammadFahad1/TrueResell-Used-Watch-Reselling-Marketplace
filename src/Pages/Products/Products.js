@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Product from './Product/Product';
 import axios from 'axios';
+import useTitle from '../../Hooks/useTitle';
 
 const Products = () => {
     const { id } = useParams();
     const [products, setProducts] = useState([])
     const [isLoading, setIsLoading] = useState(true);
-
+    useTitle('Products')
 
     useEffect(() => {
         axios.get(`https://true-resell.vercel.app/products/${id}`)

@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import useTitle from '../../../../Hooks/useTitle';
 
 const AllBuyers = () => {
     const { loading } = useContext(AuthContext);
+    useTitle('All Buyers')
 
     const { data: AllBuyers = [], isLoading, refetch } = useQuery({
         queryKey: ['AllBuyers'],

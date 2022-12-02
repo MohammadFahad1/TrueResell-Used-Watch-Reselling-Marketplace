@@ -1,9 +1,11 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import useTitle from '../../../../../Hooks/useTitle';
 
 const CheckOutForm = ({ order }) => {
     const stripe = useStripe();
     const elements = useElements();
+    useTitle('CheckOut')
 
     const price = order.sellingPrice;
 

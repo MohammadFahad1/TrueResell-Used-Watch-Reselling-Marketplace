@@ -39,7 +39,6 @@ const DashboardMain = () => {
                             <>
                                 <li className='shadow-md'><NavLink to='/dashboard/all-sellers'>All Sellers</NavLink></li>
                                 <li className='shadow-md'><NavLink to='/dashboard/all-buyers'>All Buyers</NavLink></li>
-                                <li className='shadow-md'><NavLink to='/dashboard/reported-items'>Reported Items</NavLink></li>
                             </>
                         }
                     </ul>

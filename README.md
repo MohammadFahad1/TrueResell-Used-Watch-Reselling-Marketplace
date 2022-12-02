@@ -1,8 +1,24 @@
-<h1><a href="true-resell.web.app">Live Website Link</a></h1>
-<h1><a href="https://true-resell.vercel.app/">Live Back End Link</a></h1>
 <h1><a href="https://github.com/programming-hero-web-course-4/b612-used-products-resale-clients-side-MohammadFahad1">Front End Code Link</a></h1>
 <h1><a href="https://github.com/programming-hero-web-course-4/b612-used-products-resale-server-side-MohammadFahad1">Back End Code Link</a></h1>
+<h1><a href="true-resell.web.app">Live Website Link</a></h1>
+<h1><a href="https://true-resell.vercel.app/">Live Back End Link</a></h1>
 <br>
+
+<h1>Admin Login Information</h1>
+<p><b>adminEmail:</b> fahad4bangladesh@gmail.com</p>
+<p><b>adminPassword:</b> 787898</p>
+<br>
+<h1><u>Features</u></h1>
+<ul>
+    <li>This Website is old watch reselling website.</li>
+    <li>You can sell your old products to it.</li>
+    <li>There are three different user roles (Admin, Seller, Buyer)</li>
+    <li>Admin See the options All Buyers & All Sellers</li>
+    <li>Seller Can see the option My Products & Add A Product</li>
+    <li>Buyers can see My Orders & wishlist</li>
+</ul>
+
+
 <h1><u>Work Experience</u></h1>
 <ul>
     <li>For the first time i implemented a user role based mern application.</li>
